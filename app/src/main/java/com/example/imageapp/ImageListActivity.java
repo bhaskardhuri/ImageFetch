@@ -43,6 +43,10 @@ public class ImageListActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<List<ImageModel>> call, @NonNull Response<List<ImageModel>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<ImageModel> images = response.body();
+                    for (ImageModel image : images) {
+                        Log.d("IMAGE_URL", "URL: " + image.getUrl());
+                    }
+                    // Set up RecyclerView adapter
                     ImageAdapter adapter = new ImageAdapter(images, image -> {
                         Intent intent = new Intent(ImageListActivity.this, ImageDetailActivity.class);
                         intent.putExtra("image_url", image.getUrl());
@@ -51,13 +55,15 @@ public class ImageListActivity extends AppCompatActivity {
                     });
                     recyclerView.setAdapter(adapter);
                 } else {
+                    Log.e("API_ERROR", "Response Code: " + response.code());
+                    Log.e("API_ERROR", "Response Message: " + response.message());
                     Toast.makeText(ImageListActivity.this, "No images available", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<List<ImageModel>> call, @NonNull Throwable t) {
-                Log.e("API", "Error fetching images: " + t.getMessage());
+                Log.e("API_FAILURE", "Error: " + t.getMessage());
                 Toast.makeText(ImageListActivity.this, "Failed to fetch images", Toast.LENGTH_SHORT).show();
             }
         });

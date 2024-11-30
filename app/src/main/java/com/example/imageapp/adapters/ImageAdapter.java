@@ -1,5 +1,7 @@
 package com.example.imageapp.adapters;
 
+import android.graphics.drawable.Drawable;
+import android.util.Log; // Added missing import for Log
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener; // Correct RequestListener import
+import com.bumptech.glide.request.target.Target;
 import com.example.imageapp.R;
 import com.example.imageapp.models.ImageModel;
 import java.util.List;
@@ -32,7 +38,26 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ImageModel image = images.get(position);
         holder.nameTextView.setText(image.getName());
-        Glide.with(holder.imageView.getContext()).load(image.getUrl()).into(holder.imageView);
+
+        // Load image with Glide and handle placeholders and errors
+        Glide.with(holder.imageView.getContext())
+                .load(image.getUrl())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error_placeholder)
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        Log.e("GLIDE_ERROR", "Image load failed: " + e.getMessage(), e);
+                        return false; // Allow Glide to handle the error placeholder
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        Log.d("GLIDE_SUCCESS", "Image loaded successfully");
+                        return false;
+                    }
+                })
+                .into(holder.imageView);
 
         holder.itemView.setOnClickListener(view -> listener.onImageClick(image));
     }
@@ -57,4 +82,3 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         }
     }
 }
-

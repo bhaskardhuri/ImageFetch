@@ -8,7 +8,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface ApiService {
-    @GET("api/images/")
+    @GET("images") // Endpoint after the base URL
     Call<List<ImageModel>> getImages();
 }
-
