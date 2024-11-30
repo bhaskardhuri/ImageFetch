@@ -4,19 +4,20 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp"
-    android:background="@android:color/white"
-    tools:context=".MainActivity">
+    android:background="@color/coral"
+    tools:context=".MainActivity"
+    >
 
     <Button
         android:id="@+id/fetchButton"
-        android:layout_width="wrap_content"
+        android:layout_width="224dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Fetch"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="500dp"
         android:backgroundTint="@color/purple_500"
-        android:textColor="@android:color/white"
-        android:padding="12dp"
         android:elevation="4dp"
-        android:textStyle="bold"
-        android:layout_gravity="center" />
+        android:padding="12dp"
+        android:text="Fetch"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 </RelativeLayout>

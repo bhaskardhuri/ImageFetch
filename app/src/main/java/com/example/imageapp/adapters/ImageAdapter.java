@@ -1,7 +1,7 @@
 package com.example.imageapp.adapters;
 
 import android.graphics.drawable.Drawable;
-import android.util.Log; // Added missing import for Log
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener; // Correct RequestListener import
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.imageapp.R;
 import com.example.imageapp.models.ImageModel;
@@ -26,7 +26,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         this.images = images;
         this.listener = listener;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
