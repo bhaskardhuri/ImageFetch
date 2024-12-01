@@ -10,9 +10,10 @@
 
     <Button
         android:id="@+id/fetchButton"
-        android:layout_width="224dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginTop="500dp"
         android:backgroundTint="@color/purple_500"
         android:elevation="4dp"

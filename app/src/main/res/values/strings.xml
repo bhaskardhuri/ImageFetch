@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ImageApp</string>
+    <string name="image_description">Profile image</string>
+    <string name="image_name">Image Name</string>
 </resources>
